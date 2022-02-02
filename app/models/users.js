@@ -6,21 +6,23 @@ const config = require('app/configs/config');
 
 const utilsService = require('app/services/utils');
 
-const check = () => {
+const getAllUsers = (params, callback) => {
   const checkQuery = squel.select()
-  .from(squel.select().from('roles'), 'r')
-  .field('r.role')
+    .field('id')
+    .from('users', 'u')
+    .limit(10)
 
   config.mysqlConnection.query(checkQuery.toString(), (err, result) => {
     console.log("Inside the query");
     if (err) {
-       console.log(err)
+      return callback(err);
     }
-    return result;
+
+    return callback(null, result);
   });
 
 };
 
 module.exports = {
-  check: check
+  getAllUsers: getAllUsers
 };

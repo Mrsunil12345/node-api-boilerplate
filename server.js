@@ -24,7 +24,7 @@ const authsMiddleware = require('app/middlewares/auths');
 
 // Include routers
 const healthchecksRouter = require('app/routes/healthchecks');
-const usersRoutes=require('./app/routes/allUsers')
+const usersRouter = require('app/routes/users')
 
 // Use JSON body parser
 app.use(bodyParser.json({
@@ -61,7 +61,7 @@ app.use((req, res, next) => {
 // Healthcheck routes
 // healthchecks.init();
 app.use('/healthchecks', healthchecksRouter);
-app.use('/users',usersRoutes)
+app.use('/users', usersRouter)
 
 app.get('/ping', (req, res) => {
   res.send('pong');
