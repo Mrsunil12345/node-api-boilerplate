@@ -4,10 +4,10 @@ const mysql = require('mysql');
 const os = require('os');
 
 const mysqlConnectionString = {
-  host: '',
-  user: '',
-  password: '',
-  database: '',
+  host: 'localhost',
+  user: 'root',
+  password: 'root',
+  database: 'testdb',
   port: 3306
 };
 
