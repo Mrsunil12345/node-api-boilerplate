@@ -28,7 +28,11 @@ const authsMiddleware = require('app/middlewares/auths');
 
 // Include routers
 const healthchecksRouter = require('app/routes/healthchecks');
+<<<<<<< HEAD
 const googleRoute=require('app/routes/googleAuth')
+=======
+const usersRouter = require('app/routes/users')
+>>>>>>> 7cfe20da884ee4f878d55b7cd743455df4e3aeb9
 
 // Use JSON body parser
 app.use(bodyParser.json({
@@ -49,7 +53,10 @@ config.mysqlConnection.connect((err) => {
     console.log('Connected to MySQL DB...');
   }
 });
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7cfe20da884ee4f878d55b7cd743455df4e3aeb9
 
 // Set allowed headers
 app.use((req, res, next) => {
@@ -64,8 +71,14 @@ app.use((req, res, next) => {
 });
 
 // Healthcheck routes
+<<<<<<< HEAD
 //healthchecks.init();
+=======
+// healthchecks.init();
+>>>>>>> 7cfe20da884ee4f878d55b7cd743455df4e3aeb9
 app.use('/healthchecks', healthchecksRouter);
+app.use('/users', usersRouter)
+
 app.get('/ping', (req, res) => {
   res.send('pong');
 });

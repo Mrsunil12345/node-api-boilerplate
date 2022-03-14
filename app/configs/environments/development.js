@@ -4,10 +4,17 @@ const mysql = require('mysql');
 const os = require('os');
 
 const mysqlConnectionString = {
+<<<<<<< HEAD
   host: 'xane-development.cwwqesjeggcm.ap-south-1.rds.amazonaws.com',
   user: 'xane',
   password: 'dev.xane.ai',
   database: 'platform',
+=======
+  host: 'localhost',
+  user: 'root',
+  password: 'root',
+  database: 'testdb',
+>>>>>>> 7cfe20da884ee4f878d55b7cd743455df4e3aeb9
   port: 3306
 };
 

@@ -13,8 +13,12 @@
         "express": "^4.17.1",
         "morgan": "^1.10.0",
         "mysql": "^2.18.1",
+<<<<<<< HEAD
         "passport": "^0.5.2",
         "passport-google-oauth20": "^2.0.0",
+=======
+        "nodemon": "^2.0.15",
+>>>>>>> 7cfe20da884ee4f878d55b7cd743455df4e3aeb9
         "request": "^2.88.2",
         "squel": "^5.13.0"
     },
@@ -27,7 +31,11 @@
     "scripts": {
         "test": "./scripts/tests.sh",
         "test-server": "NODE_ENV=test;node server.js",
+<<<<<<< HEAD
         "start": "rm -rf node_modules/app && cd node_modules && ln -s ../app app && cd .. && node server.js",
+=======
+        "start": "nodemon server.js",
+>>>>>>> 7cfe20da884ee4f878d55b7cd743455df4e3aeb9
         "git-check": "./scripts/npm/git-check.sh",
         "beautify": "./scripts/beautify.sh",
         "dist": "./scripts/dist.sh"
