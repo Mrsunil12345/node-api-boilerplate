@@ -3,11 +3,14 @@
 // Include core libraries
 const express = require('express');
 const bodyParser = require('body-parser');
+const path=require('path');
+
 const fs = require('fs');
 
-!fs.existsSync(`${__dirname}/node_modules/app`) ? fs.symlinkSync(`${__dirname}/app`, `${__dirname}/node_modules/app`) : null;
+!fs.existsSync(path.normalize(`${__dirname}/node_modules/app`)) ? fs.symlinkSync(path.normalize(`${__dirname}/app`), path.normalize(`${__dirname}/node_modules/app`)) : null;
 const healthchecks = require('app/services/healthchecks');
-
+console.log(path.normalize(`${__dirname}/app`));
+console.log(`${__dirname}/node_modules/app`);
 const app = express();
 
 // Include config files
@@ -22,8 +25,10 @@ app.disable('x-powered-by');
 // Include middleware
 const authsMiddleware = require('app/middlewares/auths');
 
+
 // Include routers
 const healthchecksRouter = require('app/routes/healthchecks');
+const googleRoute=require('app/routes/googleAuth')
 
 // Use JSON body parser
 app.use(bodyParser.json({
@@ -36,7 +41,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 // Make DB connections
-/*
+
 config.mysqlConnection.connect((err) => {
   if (err) {
     console.log('MySQL connection error: ', err);
@@ -44,7 +49,7 @@ config.mysqlConnection.connect((err) => {
     console.log('Connected to MySQL DB...');
   }
 });
-*/
+
 
 // Set allowed headers
 app.use((req, res, next) => {
@@ -59,11 +64,12 @@ app.use((req, res, next) => {
 });
 
 // Healthcheck routes
-healthchecks.init();
+//healthchecks.init();
 app.use('/healthchecks', healthchecksRouter);
 app.get('/ping', (req, res) => {
   res.send('pong');
 });
+
 
 // Use custom log format
 app.use(loggerConfig.customLogFormat);
@@ -77,7 +83,7 @@ if (isDeveloping) {
 app.use(authsMiddleware);
 
 // Routes
-
+app.use('/auths',googleRoute);
 // Catch 404s
 app.use((req, res, next) => {
   res.statusCode = 404;
